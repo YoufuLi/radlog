@@ -1,6 +1,6 @@
-# RaSQL
+# RaDlog
 
-RaSQL is a system supporting the execution of [recursive query](https://en.wikipedia.org/wiki/Hierarchical_and_recursive_queries_in_SQL).
+RaDlog is a system supporting the execution of [recursive query](https://en.wikipedia.org/wiki/Hierarchical_and_recursive_queries_in_SQL).
 It is built on top of Spark (branch 2.0) that includes the compiler
 and the distributed execution engine for the RaSQL (Recursive-aggregate-SQL)
 language and the traditional Datalog. It supersedes the BigDatalog system
@@ -8,9 +8,9 @@ that previously developed at UCLA.
 
 <https://rasql.org/>
 
-## Building RaSQL
+## Building RaDlog
 
-**Make sure you switch to the branch `sql`, where the RaSQL codes reside.** Then just follow the instructions of how Spark builds.
+You may follow the instructions of how Spark builds.
 
 Spark is built using [Apache Maven](http://maven.apache.org/).
 To build Spark and its example programs, run:
@@ -58,7 +58,7 @@ And run the following command, TODO:
      
 ## Example Programs
 
-Example RaSQL and Datalog queries locate in [query](query) directory.
+Example RaDlog and Datalog queries locate in [query](query) directory.
 The example/test data locate in [testdata](testdata) directory.
 
 ## Running Tests
