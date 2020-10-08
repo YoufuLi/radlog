@@ -291,11 +291,15 @@ class PrimitiveMCaseAggregationIterator(
     // AND MODIFIED UNTIL THE LAST ACCESS IN ONE ITERATION
     tempCount.incUsedCount()
     val recursiveRelations = Array("model", "pattern", "distc", "ovlp", "csets", "csetX", "fitset") // "pattern", "distc", "fdistc", "cntdecyn", "cntdecy", "cntdec", "gini"
-    if(deltaMap.isEmpty && tempCount.isLastUsedInIteration && recursiveRelations.contains(name)) {
-      previousDeltaMap
+    if (recursiveRelations.contains(name)) {
+      if (deltaMap.isEmpty && tempCount.isLastUsedInIteration) {
+        previousDeltaMap
+      } else {
+        previousDeltaMap.clear()
+        previousDeltaMap.putAll(deltaMap)
+        deltaMap
+      }
     } else {
-      previousDeltaMap.clear()
-      previousDeltaMap.putAll(deltaMap)
       deltaMap
     }
   }

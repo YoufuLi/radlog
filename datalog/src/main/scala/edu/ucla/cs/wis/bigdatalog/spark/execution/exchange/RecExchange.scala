@@ -162,20 +162,17 @@ class RecDeltaRDD(name: String, initSets: Boolean, outputLength: Int, var depend
       tempCount.incUsedCount()
       val recursiveRelations = Array("npat", "fdistc", "cntdec", "cntdecy", "uns", "fovlp") // "pattern", "distc", "fdistc", "cntdecyn", "cntdecy", "cntdec", "gini"
 
-      if(diffSet.size() == 0 && tempCount.isLastUsedInIteration && recursiveRelations.contains(name)) {
-        HashSetRowIterator.create(previousDeltaSet)
+      if (recursiveRelations.contains(name)) {
+        if (diffSet.size() == 0 && tempCount.isLastUsedInIteration) {
+          HashSetRowIterator.create(previousDeltaSet)
+        } else {
+          previousDeltaSet.clear()
+          previousDeltaSet.union(diffSet)
+          HashSetRowIterator.create(diffSet)
+        }
       } else {
-        previousDeltaSet.clear()
-        previousDeltaSet.union(diffSet)
         HashSetRowIterator.create(diffSet)
       }
-//      var nonLinearSet = dataKeeper.getNonLinearSet(split.index)
-//      if(diffSet.size() == 0 && (name == "npat")) {
-//        return nonLinearSet
-//      } else {
-//        nonLinearSet = null
-//        dataKeeper.setNonLinearSet(split.index, HashSetRowIterator.create(diffSet))
-//      }
 
       // TODO: HERE EXITS READ TWICE PROBLEM CANNOT FIX SIMPLY DUE TO USED IN BOTH TWO CASES (tc_nl company_control)
 //      HashSetRowIterator.create(diffSet)
