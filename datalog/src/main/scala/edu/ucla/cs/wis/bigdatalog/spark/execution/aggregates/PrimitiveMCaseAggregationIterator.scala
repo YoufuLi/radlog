@@ -133,10 +133,10 @@ class PrimitiveMCaseAggregationIterator(
   def processInputs(): Long2DoubleOpenHashMap = {
     val deltaMap = new Long2DoubleOpenHashMap()
     var i = 0
-    println(name)
+//    println(name)
     while (inputIter.hasNext) {
       val row = inputIter.next()
-      println(row)
+//      println(row)
       if (isMinMax && (!isChain)) {
         val groupingKey: Long = inputLen match {
           case 2 => row.getInt(0) // 0: Grouping 1: Sub 2: Aggr
